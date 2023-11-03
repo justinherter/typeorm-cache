@@ -1,5 +1,5 @@
 {
-  "name": "typeorm-cache",
+  "name": "typeorm-keyv-cache",
   "version": "1.2.0",
   "description": "A typeorm cache provider based on keyv.",
   "main": "./lib",
@@ -10,7 +10,7 @@
     "keyv",
     "memory"
   ],
-  "repository": "https://github.com/acathur/typeorm-cache.git",
+  "repository": "https://github.com/justinherter/typeorm-cache.git",
   "author": "Acathur <chiahungzhang@gmail.com>, JHerter <jherter80@gmail.com>",
   "license": "MIT",
   "scripts": {
