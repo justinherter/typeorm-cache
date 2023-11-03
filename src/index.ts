@@ -17,7 +17,7 @@ export class KeyvCacheProvider implements QueryResultCache {
 
   constructor(opts?: KeyvCacheProviderOptions | string) {
     opts = typeof opts === 'object' ? opts : typeof opts === 'string' ? { uri: opts } : {}
-    const namespace = opts.namespace || opts.keyPrefix || 'typeorm:cache'
+    const namespace = opts.namespace || 'typeorm:cache'
     this.cache = new Keyv({ ...opts, namespace })
     this.keyPrefix = opts.uri ? '' : namespace + ':'
   }
@@ -46,9 +46,8 @@ export class KeyvCacheProvider implements QueryResultCache {
    */
   async getFromCache(options: QueryResultCacheOptions, queryRunner?: QueryRunner): Promise<QueryResultCacheOptions | undefined> {
     const { identifier, query, duration } = options
-    const key = `${this.keyPrefix}${identifier || this.generateIdentifier(query)}`
+    const key = `${this.keyPrefix}${identifier || this.generateIdentifier(query || '')}`
     const result = await this.cache.get(key)
-
     return (
       result && {
         identifier: key,
@@ -64,7 +63,7 @@ export class KeyvCacheProvider implements QueryResultCache {
    */
   async storeInCache(options: QueryResultCacheOptions, savedCache: QueryResultCacheOptions | undefined, queryRunner?: QueryRunner) {
     const { identifier, query, duration, result } = options
-    const key = `${this.keyPrefix}${identifier || this.generateIdentifier(query)}`
+    const key = `${this.keyPrefix}${identifier || this.generateIdentifier(query || '')}`
     await this.cache.set(key, result, duration)
   }
 
@@ -87,7 +86,8 @@ export class KeyvCacheProvider implements QueryResultCache {
    */
   async remove(identifiers: string[], queryRunner?: QueryRunner) {
     for (const key of identifiers) {
-      await this.cache.delete(key)
+      const prefixedKey: string = `${this.keyPrefix}${key}`
+      await this.cache.delete(prefixedKey)
     }
   }
 }
