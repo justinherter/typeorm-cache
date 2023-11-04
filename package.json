@@ -1,7 +1,7 @@
 {
   "name": "typeorm-keyv-cache",
   "version": "1.2.0",
-  "description": "A typeorm cache provider based on keyv.",
+  "description": "A typeorm cache provider based on the keyv package.",
   "main": "./lib",
   "types": "./lib/index.d.ts",
   "keywords": [
@@ -11,19 +11,23 @@
     "memory"
   ],
   "repository": "https://github.com/justinherter/typeorm-cache.git",
-  "author": "Acathur <chiahungzhang@gmail.com>, JHerter <jherter80@gmail.com>",
+  "author": "JHerter <jherter80@gmail.com>, Acathur <chiahungzhang@gmail.com>",
   "license": "MIT",
   "scripts": {
     "build": "rm -rf dist && tsc"
   },
   "peerDependencies": {
+    "@nestjs/common": "^10.2.8",
     "keyv": "^4.5.4",
-    "typeorm": "^0.2.0"
+    "typeorm": "^0.3.17"
   },
   "devDependencies": {
     "@types/keyv": "^4.2.0",
     "@types/node": "^20.8.10",
     "typeorm": "^0.3.17",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@nestjs/common": "^10.2.8"
   }
 }

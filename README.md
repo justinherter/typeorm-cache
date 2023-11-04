@@ -1,4 +1,4 @@
-# Typeorm Cache
+# Typeorm KeyV Cache
 
 A typeorm cache provider based on [keyv](https://www.npmjs.com/package/keyv).
 
@@ -6,10 +6,10 @@ A typeorm cache provider based on [keyv](https://www.npmjs.com/package/keyv).
 
 ```bash
 # npm
-npm i typeorm-cache keyv --save
+npm i typeorm-keyv-cache keyv --save
 
 # or yarn
-yarn add typeorm-cache keyv
+yarn add typeorm-keyv-cache keyv
 ```
 
 ## Usage
@@ -24,8 +24,8 @@ createConnection({
   cache: {
     provider() {
       return new KeyvCacheProvider()
-    }
-  }
+    },
+  },
 })
 
 // Redis
@@ -34,8 +34,8 @@ createConnection({
   cache: {
     provider() {
       return new KeyvCacheProvider('redis://user:pass@localhost:6379')
-    }
-  }
+    },
+  },
 })
 
 // ...
@@ -45,6 +45,6 @@ For more examples, visit [keyv documentation](https://www.npmjs.com/package/keyv
 
 ## License
 
-[MIT](https://github.com/acathur/typeorm-cache/blob/master/LICENSE)
+[MIT](https://github.com/justinherter/typeorm-keyv-cache/blob/master/LICENSE)
 
-Copyright (c) 2021, Acathur
+Copyright (c) 2023, Justin Herter
