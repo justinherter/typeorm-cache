@@ -12,18 +12,55 @@ npm i typeorm-keyv-cache keyv --save
 yarn add typeorm-keyv-cache keyv
 ```
 
-## Usage
+## General Usage
 
 ```ts
-import { createConnection } from 'typeorm'
-import { KeyvCacheProvider } from 'typeorm-cache'
+// optional parameters for Keyv
+const options: Keyv.Options<any> = {
+  /**
+   * Namespace for the current instance,
+   * also becomes the cache key prefix and defaults to 'cache'.
+   */
+  namespace?: string | undefined;
+  /** A custom serialization function. */
+  serialize?: ((data: DeserializedData<Value>) => string) | undefined;
+  /** A custom deserialization function. */
+  deserialize?: ((data: string) => DeserializedData<Value> | undefined) | undefined;
+  /** The connection string URI. */
+  uri?: string | undefined;
+  /** The storage adapter instance to be used by Keyv. */
+  store?: Store<string | undefined> | undefined;
+  /** Default TTL. Can be overridden by specififying a TTL on `.set()`. */
+  ttl?: number | undefined;
+  /** Specify an adapter to use. e.g `'redis'` or `'mongodb'`. */
+  adapter?: 'redis' | 'mongodb' | 'mongo' | 'sqlite' | 'postgresql' | 'postgres' | 'mysql' | undefined;
+  /** Enable compression option **/
+  compression?: CompressionAdapter | undefined;
+}
 
-// In-memory cache
+// General In-memory Cache
+import { CacheProvider } from 'typeorm-keyv-cache'
+
+const cache = new CacheProvider(options);
+
+// General In-memory Cache Injectable with NestJS
+@Injectable()
+class SomeClass {
+  constructor(private readonly cache: CacheProvider){}
+}
+
+
+
+import { createConnection } from 'typeorm'
+import { CacheProvider } from 'typeorm-keyv-cache'
+
+
+// General In-memory Cache
 createConnection({
   // ... db config
   cache: {
     provider() {
-      return new KeyvCacheProvider()
+      return new CacheProvider()
     },
   },
 })
