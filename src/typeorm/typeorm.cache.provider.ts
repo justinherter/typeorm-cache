@@ -51,7 +51,7 @@ export class TypeOrmCacheProvider extends AbstractCacheProvider implements Query
   /**
    * Stores given query result in the cache.
    */
-  async storeInCache(options: QueryResultCacheOptions, savedCache: QueryResultCacheOptions | undefined, queryRunner?: QueryRunner) {
+  async setInCache(options: QueryResultCacheOptions, savedCache: QueryResultCacheOptions | undefined, queryRunner?: QueryRunner) {
     const { identifier, query, duration, result } = options;
     const key = `${this.prefix}${identifier || this.generateIdentifier(query || '')}`;
     await this.cache.set(key, result, duration);
