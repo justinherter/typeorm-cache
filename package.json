@@ -1,20 +1,22 @@
 {
-  "name": "typeorm-keyv-cache",
-  "version": "1.2.0",
-  "description": "A typeorm cache provider based on the keyv package.",
+  "name": "typeorm-nestjs-keyv-cache",
+  "version": "1.0.0",
+  "description": "A typeorm cache provider based on the keyv package, includes a nestjs provider.",
   "main": "./lib",
   "types": "./lib/index.d.ts",
   "keywords": [
     "typeorm",
+    "nestjs",
     "cache",
     "keyv",
     "memory"
   ],
-  "repository": "https://github.com/justinherter/typeorm-cache.git",
-  "author": "JHerter <jherter80@gmail.com>, Acathur <chiahungzhang@gmail.com>",
+  "repository": "https://github.com/justinherter/typeorm-nestjs-keyv-cache.git",
+  "author": "JHerter <jherter80@gmail.com>",
   "license": "MIT",
   "scripts": {
     "build": "rm -rf dist && tsc",
+    "release": "npm publish --access public",
     "test": "jest"
   },
   "peerDependencies": {
